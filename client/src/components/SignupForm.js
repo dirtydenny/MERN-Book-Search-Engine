@@ -48,8 +48,7 @@ const SignupForm = () => {
     } catch (err) {
       console.error(err);
     }
-  };
-
+  
     setUserFormData({
       username: '',
       email: '',
