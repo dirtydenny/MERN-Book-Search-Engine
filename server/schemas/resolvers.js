@@ -4,9 +4,13 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    me: async (parent, args, context) => {
+    me: async (parent, arg, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate("thoughts");
+        const userData = await User.findOne({ _id: context.user._id }).select(
+          "-__v -password"
+        );
+
+        return userData;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -35,13 +39,13 @@ const resolvers = {
 
       return { token, user };
     },
-    saveBook: async (parent, { bookId, authors, description, title, image, link }, context) => {
+    saveBook: async (
+      parent, { bookData }, context) => {
       if (context.user) {
-        
-    const user = await User.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { savedBooks: {bookId, authors, description, title, image, link}}}, 
-          {new: true}
+          { $addToSet: { savedBooks: bookData } },
+          { new: true }
         );
 
         return user;
@@ -50,10 +54,9 @@ const resolvers = {
     },
     removeBook: async (parent, { bookId }, context) => {
       if (context.user) {
-        
-    const user = await User.findOneAndUpdate(
+        const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { savedBooks: {bookId}} }
+          { $pull: { savedBooks: { bookId } } }
         );
 
         return user;
@@ -64,3 +67,5 @@ const resolvers = {
 };
 
 module.exports = resolvers;
+
+// { bookId, authors, description, title, image, link }

@@ -31,7 +31,6 @@ const SearchBooks = () => {
       return false;
     }
     // make a search to google books api
-    // https://www.googleapis.com/books/v1/volumes?q=harry+potter
     try {
       const response = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`);
