@@ -6,6 +6,8 @@
 
 ## Table of Contents  
 [Description](#description)
+
+[Deployment](#deployment)
   
 [Installation](#installation)
   
@@ -22,7 +24,13 @@
 
   ## Description
 
-  The purpose of the application is to give the user a place to wasily store their favorite books.  
+  The purpose of the application is to give the user a place to easily store their favorite books.
+
+  The app was originallu built using the MERN stack with a React front end, MongoDB database, and Node.js/Express.js server and API.  We have refracctored it to use an Apollo Server utilizing GraphQl queries and mutations to modify data; modified the existing authentication middleware so that it works in the context of a GraphQL API; and created an Apollo Provider so that requests can communicate with an Apollo Server.
+
+  ## Deployment
+
+  
 
   ## Installation
 
