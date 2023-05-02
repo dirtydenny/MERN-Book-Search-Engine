@@ -36,7 +36,7 @@
 
   ## Installation
 
-  npmi into each of the root, server, and client directories.  npm run build.   npm start
+  npmi into each of the root, server, and client directories.  npm run develop.  please see [Deployed] #deployed for the working site.
 
   ## Usage
 
